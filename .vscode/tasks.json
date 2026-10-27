@@ -1,0 +1,68 @@
+{
+  // 용돈 기입장 실행 작업 모음
+  // 실행: 메뉴 Terminal > Run Task... (또는 Cmd+Shift+P → "Tasks: Run Task")
+  // Cmd+Shift+B 를 누르면 "명령 직접 입력" 이 바로 실행된다.
+  "version": "2.0.0",
+  "options": {
+    "cwd": "${workspaceFolder}"
+  },
+  "presentation": {
+    "reveal": "always",
+    "focus": true,
+    "panel": "dedicated",
+    "clear": false
+  },
+  "tasks": [
+    {
+      "label": "용돈 기입장: 명령 직접 입력",
+      "type": "shell",
+      "command": "python3 -m budget_app ${input:args}",
+      "problemMatcher": [],
+      "group": { "kind": "build", "isDefault": true }
+    },
+    {
+      "label": "용돈 기입장: 도움말 (--help)",
+      "type": "shell",
+      "command": "python3 -m budget_app --help",
+      "problemMatcher": []
+    },
+    {
+      "label": "용돈 기입장: 거래 추가 (add)",
+      "type": "shell",
+      "command": "python3 -m budget_app add",
+      "problemMatcher": []
+    },
+    {
+      "label": "용돈 기입장: 거래 목록 (list)",
+      "type": "shell",
+      "command": "python3 -m budget_app list",
+      "problemMatcher": []
+    },
+    {
+      "label": "용돈 기입장: 월별 요약 (summary)",
+      "type": "shell",
+      "command": "python3 -m budget_app summary --month ${input:month}",
+      "problemMatcher": []
+    },
+    {
+      "label": "용돈 기입장: 카테고리 목록 (category list)",
+      "type": "shell",
+      "command": "python3 -m budget_app category list",
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "args",
+      "type": "promptString",
+      "description": "budget_app 뒤에 붙일 명령과 옵션 (예: search --category food)",
+      "default": "list --limit 5"
+    },
+    {
+      "id": "month",
+      "type": "promptString",
+      "description": "요약할 월 (YYYY-MM)",
+      "default": "2024-01"
+    }
+  ]
+}
